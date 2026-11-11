@@ -21,14 +21,14 @@ description: "基于图片生成的设计 skill。当需要生成或设计 PPT�
 ## 如何确定风格
 
 - 根据任务选用已有图片或页面、社区示例、网络搜索或直接生成的风格参考图。
-- 用户想自己挑选时，提供在线图集链接。用户可以按类别或关键词浏览，选好后发回示例页链接。[在线图集](https://xlcyun.github.io/cangyun-design-anything-examples/)
+- 告知用户如果自己想挑选的话，可以访问：[示例图集](https://xlcyun.github.io/cangyun-design-anything-examples/)
 - 需要查找社区示例时，按 PPT、网页 UI 或论文插图选择 `ppt`、`ui` 或 `paper`，从 Skill 目录运行脚本并传入风格关键词。默认返回前三条，可用 `--limit` 调整。
 
   ```bash
   python3 scripts/search_examples.py --category paper --query "图标 架构"
   ```
 
-- 用结果中的 `cover` URL 下载封面，例如 `curl -fL "$cover_url" -o "$image_path"`。将图片保存在当前任务的参考图目录，沿用原文件扩展名。需要同组图片时，读取 `detail` 的 `images`，以该 JSON 的 URL 为基准解析各项 `file`。`page` 是可发给用户的示例页。收到用户选好的示例页链接时，读取同目录的 `example.json` 找到图片。
+- 下载图片或 detail 字段 JSON 文件，将图片保存在当前任务的参考图目录。收到用户选好的示例页链接时，下载链接同目录下的 `example.json` 找到图片。
 - 风格明确时先做一版。需要比较时，用同一页内容试两到三种视觉方向。用户确认一版后，将它作为后续页面的风格母版。
 
 ## 如何生成图片
